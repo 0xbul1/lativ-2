@@ -5,16 +5,17 @@ import { config } from '../config/config';
 import { Http } from '../utils/http';
 
 class Theme {
-  static getHomeLocationA(callback) {
-    Http.request({
+  static async getHomeLocationA(callback) {
+    const data = await Http.request({
       url: 'theme/by/names',
       data: {
         names: 't-1',
       },
-      callback: (data) => {
-        callback(data);
-      },
+      // callback: (data) => {
+      //   callback(data);
+      // },
     });
+    return data;
     // wx.request({
     //   url: `${config.apiBaseUrl}theme/by/names`,
     //   data: {
