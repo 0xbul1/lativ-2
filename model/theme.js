@@ -6,54 +6,38 @@ import { Http } from '../utils/http';
 
 class Theme {
   static locationA = 't-1';
-  static async getHomeLocationA(callback) {
-    const data = await Http.request({
-      url: 'theme/by/names',
-      data: {
-        names: Theme.locationA,
-      },
-      // callback: (data) => {
-      //   callback(data);
-      // },
-    });
-    return data;
-    // wx.request({
-    //   url: `${config.apiBaseUrl}theme/by/names`,
-    //   data: {
-    //     names: 't-1',
-    //   },
-    //   header: { appKey: `${config.appKey}` },
-    //   method: 'GET',
-    //   dataType: 'json',
-    //   responseType: 'text',
-    //   success: (res) => {
-    //     callback(res.data);
-    //     // this.setData({
-    //     //   topTheme: res.data[0],
-    //     // });
-    //   },
-    //   fail: () => {},
-    //   complete: () => {},
-    // });
-  }
   static locationE = 't-2';
   static locationF = 't-3';
   static locationH = 't-4';
-  static async getHomeLocationE() {
-    return await Http.request({
-      url: 'theme/by/names',
-      data: {
-        names: Theme.locationE,
-      },
-    });
-  }
-  static async getThemes() {
+
+  themes = [];
+  async getThemes() {
     const names = `${Theme.locationA},${Theme.locationE},${Theme.locationF},${Theme.locationH},`;
-    return await Http.request({
+    this.themes = await Http.request({
       url: 'theme/by/names',
       data: {
         names,
       },
+    });
+  }
+  async getHomeLocationA() {
+    return this.themes.find((t) => t.name === Theme.locationA);
+  }
+  async getHomeLocationE() {
+    return this.themes.find((t) => t.name === Theme.locationE);
+  }
+  async getHomeLocationF() {
+    return this.themes.find((t) => t.name === Theme.locationF);
+  }
+  async getHomeLocationH() {
+    return this.themes.find((t) => t.name === Theme.locationH);
+  }
+  static getHomeLocationESpu() {
+    return Theme.getThemeByName(Theme.locationE);
+  }
+  static getThemeByName(name) {
+    return Http.request({
+      url: `theme/name/${name}/with_spu`,
     });
   }
 }

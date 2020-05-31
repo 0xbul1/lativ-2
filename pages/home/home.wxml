@@ -24,4 +24,12 @@
   <!-- activity start -->
   <image class="activity" src="{{ activityD.entrance_img }}"> </image>
   <!-- activity end -->
+  <!-- spu-scroll start -->
+  <home-spu-scroll
+    wx:if="{{ themeE.online }}"
+    theme="{{ themeE }}"
+    spu-list="{{ themeESpu }}"
+  >
+  </home-spu-scroll>
+  <!-- spu-scroll end -->
 </view>

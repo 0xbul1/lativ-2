@@ -19,27 +19,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // const data = await Theme
-    //   .getHomeLocationA
-    //   //   (data) => {
-    //   //   this.setData({
-    //   //     topTheme: data[0],
-    //   //   });
-    //   // }
-    //   ();
-    // this.setData({
-    //   topTheme: data[0],
-    // });
     this.initAllData();
   },
   async initAllData() {
-    const themes = await Theme.getThemes();
-    const themeA = themes.find((t) => t.name === 't-1');
+    const theme = new Theme();
+    await theme.getThemes();
+    const themeA = await theme.getHomeLocationA();
+    const themeE = await theme.getHomeLocationE();
+    let themeESpu = [];
+    if (themeE.online) {
+      const data = await Theme.getHomeLocationESpu();
+      if (data) {
+        themeESpu = data.spu_list.slice(0, 8);
+      }
+    }
     const bannerB = await Banner.getHomeLocationB();
     const grid = await Category.getHomeLocationC();
     const activityD = await Activity.getHomeLocationD();
     this.setData({
       themeA,
+      themeE,
+      themeESpu,
       bannerB,
       grid,
       activityD,
