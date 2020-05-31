@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
 }
 .inner-container {
   width: 730rpx;
@@ -17,9 +18,12 @@
   flex-direction: column;
   align-items: center;
 }
-.img {
+.image {
   width: 60rpx;
   height: 60rpx;
 }
 .text {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: #333333;
 }

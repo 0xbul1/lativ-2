@@ -1,5 +1,5 @@
 <!--pages/home/home.wxml-->
-<view>
+<view class="container">
   <!-- theme start-->
   <!-- theme end-->
   <image class="top-theme" src="{{ themeA.entrance_img }}"> </image>
@@ -21,4 +21,7 @@
   <!-- grid start -->
   <home-category-grid grid="{{ grid }}"> </home-category-grid>
   <!-- grid end -->
+  <!-- activity start -->
+  <image class="activity" src="{{ activityD.entrance_img }}"> </image>
+  <!-- activity end -->
 </view>

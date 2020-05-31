@@ -3,6 +3,7 @@ import { config } from '../../config/config';
 import { Theme } from '../../model/theme';
 import { Banner } from '../../model/banner';
 import { Category } from '../../model/category';
+import { Activity } from '../../model/activity';
 Page({
   /**
    * 页面的初始数据
@@ -11,6 +12,7 @@ Page({
     themeA: null,
     bannerB: null,
     grid: [],
+    activityD: null,
   },
 
   /**
@@ -31,13 +33,16 @@ Page({
     this.initAllData();
   },
   async initAllData() {
-    const themeA = await Theme.getHomeLocationA();
+    const themes = await Theme.getThemes();
+    const themeA = themes.find((t) => t.name === 't-1');
     const bannerB = await Banner.getHomeLocationB();
-    const grid = await Category.getGridCategory();
+    const grid = await Category.getHomeLocationC();
+    const activityD = await Activity.getHomeLocationD();
     this.setData({
-      themeA: themeA[0],
+      themeA,
       bannerB,
       grid,
+      activityD,
     });
   },
 });
